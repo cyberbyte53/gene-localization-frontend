@@ -20,14 +20,14 @@ function App() {
     setIsLoading(true); // Set loading state to true when the request starts
     const items = genes.split(',').map(item => item.trim());
     const formattedItems = items.filter(item => item !== '');
-
+    console.log(localizationSignal);
     try {
       const response = await fetch('https://gene-localization-backend.onrender.com/process_data', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ localizationSignal, genes: formattedItems }),
+        body: JSON.stringify({ localization_signal: localizationSignal, genes: formattedItems }),
       });
       const data = await response.json();
       const result = data.result;
